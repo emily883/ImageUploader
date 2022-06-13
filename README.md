@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://imageuploaderclient.herokuapp.com/">
       Demo
     </a>
     <span> | </span>
@@ -39,8 +39,7 @@
 
 ![screenshot](./DemoImage.jpg)
 
-A website where you can upload a photo and share it with your friends and family. 
-You can see the Demo here -> 
+A website where you can upload a photo and share it with your friends and family.
 
 ### Built With
 
