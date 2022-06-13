@@ -1,0 +1,17 @@
+.AppContainer {
+  height: 100%;
+}
+
+.ImageUploaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+.FooterContainer {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+}
