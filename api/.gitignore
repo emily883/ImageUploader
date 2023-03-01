@@ -6,8 +6,10 @@
 # testing
 /coverage
 
-
+# Build production
 /build
+
+# Images that are being uploader
 
 # misc
 .DS_Store

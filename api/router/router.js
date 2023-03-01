@@ -9,7 +9,7 @@ const Link = process.env.LINK;
 
 router.post("/", upload.single("image"), async function (req, res) {
   const link = {
-    link: Link + "/Images/" + res.req.file.filename,
+    link: Link  + res.req.file.filename,
   };
   return res.status(200).json(link);
 });

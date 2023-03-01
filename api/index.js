@@ -19,7 +19,7 @@ app.use(cors(corsOptions));
 
 // app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("ImagesUpload"));
+app.use(express.static("Images"));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); 
@@ -29,9 +29,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.send("hola gente");
-});
+// Testing Api Call
+// app.get("/", (req, res) => {
+//   res.send("hola gente");
+// });
 
 app.use("/upload", router);
 

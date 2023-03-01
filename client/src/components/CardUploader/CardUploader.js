@@ -5,10 +5,9 @@ import image from "../image.svg";
 import axios from "axios";
 import Loading from "../Loading/Loading.js";
 import Success from "../Success/Success.js";
-const HOST = process.env.REACT_APP_HOST;
+// const HOST = process.env.REACT_APP_HOST;
 
 function CardUploader() {
-  console.log(HOST);
   const [url, setUrl] = useState(undefined);
   const [LoadingStatus, setLoading] = useState(false);
   const [SuccessStatus, setSuccess] = useState(false);
@@ -22,8 +21,9 @@ function CardUploader() {
 
   const upload_Image = (data) => {
     setLoading(true);
+    // console.log(HOST)
     axios
-      .post(HOST + "/upload/", data)
+      .post("http://localhost:5000/upload/", data)
       .then((res) => {
         setLoading(false);
         setUrl(res.data);
