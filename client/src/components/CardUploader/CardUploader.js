@@ -5,7 +5,7 @@ import image from "../image.svg";
 import axios from "axios";
 import Loading from "../Loading/Loading.js";
 import Success from "../Success/Success.js";
-// const HOST = process.env.REACT_APP_HOST;
+const HOST = process.env.REACT_APP_HOST;
 
 function CardUploader() {
   const [url, setUrl] = useState(undefined);
@@ -18,12 +18,11 @@ function CardUploader() {
       dropzoneRef.current.open();
     }
   };
-
+  
   const upload_Image = (data) => {
     setLoading(true);
-    // console.log(HOST)
     axios
-      .post("http://localhost:5000/upload/", data)
+      .post(HOST, data)
       .then((res) => {
         setLoading(false);
         setUrl(res.data);
