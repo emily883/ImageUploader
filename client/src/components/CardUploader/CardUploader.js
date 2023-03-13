@@ -5,7 +5,7 @@ import image from "../image.svg";
 // import axios from "axios";
 import Loading from "../Loading/Loading.js";
 import Success from "../Success/Success.js";
-import storage from "../../firebase/firebase";
+import storage from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 // const HOST = process.env.REACT_APP_HOST;
 

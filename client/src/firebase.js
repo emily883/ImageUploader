@@ -1,11 +1,11 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
-const apikey = process.env.APIKEY;
-const authdomain = process.env.AUTHDOMAIN;
-const projectid = process.env.PROJECTID;
-const storagebucket = process.env.STORAGEBUCKET;
-const messagingsenderId = process.env.MESSAGINGSENDERID;
-const appid = process.env.APPID;
+const apikey = process.env.REACT_APP_APIKEY;
+const authdomain = process.env.REACT_APP_AUTHDOMAIN;
+const projectid = process.env.REACT_APP_PROJECTID;
+const storagebucket = process.env.REACT_APP_STORAGEBUCKET;
+const messagingsenderId = process.env.REACT_APP_MESSAGINGSENDERID;
+const appid = process.env.REACT_APP_APPID;
 
 
 const app = initializeApp({
