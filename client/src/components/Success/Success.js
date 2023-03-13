@@ -5,7 +5,7 @@ import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 
 function Success({ url }) {
   const [Copy, setCopy] = useState(false);
-  const { link } = url;
+  // const { link } = url;
   return (
     <div className={style.successContainer}>
       <div className={style.SuccessfulCheckMark}>
@@ -13,7 +13,7 @@ function Success({ url }) {
       </div>
       <div className={style.SuccessfulMessage}>Uploaded Successfully!</div>
       <div className={style.ImageUploadedContainer}>
-        <img className={style.ImageUploaded} src={link} alt="Uploaded" />
+        <img className={style.ImageUploaded} src={url} alt="Uploaded" />
       </div>
       <div className={style.CopyFunction}>
         <input
@@ -21,14 +21,14 @@ function Success({ url }) {
           onFocus={(e) => {
             e.target.select();
           }}
-          value={link}
+          value={url}
           readOnly
         />
         <button
           className={style.ButtonLink}
           onClick={() => {
             navigator.clipboard
-              .writeText(link)
+              .writeText(url)
               .then(setCopy(true))
               .catch((err) => console.log(err.message));
           }}

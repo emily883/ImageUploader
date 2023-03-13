@@ -1,3 +1,1 @@
-Don't forget to create a .env file in root of the project with 
-
-REACT_APP_HOST=apiUrl/upload/
+Don't forget to add firebase data into a new .env file

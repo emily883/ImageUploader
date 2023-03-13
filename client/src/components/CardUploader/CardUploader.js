@@ -2,10 +2,12 @@ import React, { useCallback, useState, createRef } from "react";
 import style from "./CardUploader.module.css";
 import Dropzone from "react-dropzone";
 import image from "../image.svg";
-import axios from "axios";
+// import axios from "axios";
 import Loading from "../Loading/Loading.js";
 import Success from "../Success/Success.js";
-const HOST = process.env.REACT_APP_HOST;
+import storage from "../../firebase/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
+// const HOST = process.env.REACT_APP_HOST;
 
 function CardUploader() {
   const [url, setUrl] = useState(undefined);
@@ -18,24 +20,45 @@ function CardUploader() {
       dropzoneRef.current.open();
     }
   };
-  
-  const upload_Image = (data) => {
-    setLoading(true);
-    axios
-      .post(HOST, data)
-      .then((res) => {
-        setLoading(false);
-        setUrl(res.data);
+
+  // WIthout Firebase integration
+  // const upload_Image = (data) => {
+  //   setLoading(true);
+  //   axios
+  //     .post(HOST, data)
+  //     .then((res) => {
+  //       setLoading(false);
+  //       setUrl(res.data);
+  //       setSuccess(true);
+  //     })
+  //     .catch();
+  // };
+
+
+  const UploadPhoto = (photo) => {
+    const storageRef = ref(storage, `ImageUploaderImages/${photo.name}`);
+
+    uploadBytes(storageRef, photo).then(() => {
+
+      getDownloadURL(storageRef).then((url) => {
+        setUrl(url);
         setSuccess(true);
+        setLoading(false);
       })
-      .catch();
-  };
+    });
+  }
+
+  // Without Firebase integration
+  // const onDrop = useCallback((acceptedFiles) => {
+  //   const data = new FormData();
+  //   data.append("image", acceptedFiles[0]);
+
+  //   upload_Image(data);
+  // }, []);
 
   const onDrop = useCallback((acceptedFiles) => {
-    const data = new FormData();
-    data.append("image", acceptedFiles[0]);
-
-    upload_Image(data);
+    setLoading(true);
+    UploadPhoto(acceptedFiles[0]);
   }, []);
 
   return (
