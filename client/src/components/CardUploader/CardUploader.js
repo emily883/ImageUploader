@@ -6,13 +6,19 @@ import image from "../image.svg";
 import Loading from "../Loading/Loading.js";
 import Success from "../Success/Success.js";
 import storage from "../../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // const HOST = process.env.REACT_APP_HOST;
+import Alert from "@mui/material/Alert";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 function CardUploader() {
   const [url, setUrl] = useState(undefined);
   const [LoadingStatus, setLoading] = useState(false);
   const [SuccessStatus, setSuccess] = useState(false);
+  const [Error, setError] = useState(false);
 
   const dropzoneRef = createRef();
   const openDialog = () => {
@@ -34,19 +40,17 @@ function CardUploader() {
   //     .catch();
   // };
 
-
   const UploadPhoto = (photo) => {
     const storageRef = ref(storage, `ImageUploaderImages/${photo.name}`);
 
     uploadBytes(storageRef, photo).then(() => {
-
       getDownloadURL(storageRef).then((url) => {
         setUrl(url);
         setSuccess(true);
         setLoading(false);
-      })
+      });
     });
-  }
+  };
 
   // Without Firebase integration
   // const onDrop = useCallback((acceptedFiles) => {
@@ -55,14 +59,40 @@ function CardUploader() {
 
   //   upload_Image(data);
   // }, []);
-
   const onDrop = useCallback((acceptedFiles) => {
-    setLoading(true);
-    UploadPhoto(acceptedFiles[0]);
+    const regex = /^image\/(jpeg|png)$/;
+    if (!regex.test(acceptedFiles[0].type)) {
+      setError(true)
+    } else {
+      setError(false);
+      setLoading(true);
+      UploadPhoto(acceptedFiles[0]);
+    }
   }, []);
 
   return (
     <>
+      <Box sx={{ width: "100%" }} className={style.BoxNotify}>
+        <Collapse in={Error}>
+          <Alert
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setError(false);
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+            sx={{ mb: 2 }}
+          >
+            File should be an image
+          </Alert>
+        </Collapse>
+      </Box>
       {LoadingStatus ? (
         <div className={style.LoadingWrapper}>
           <Loading />

@@ -1,3 +1,10 @@
+.BoxNotify{
+  display: flex;
+  margin-left: 3vw;
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
 .CardUploaderContainer {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
